@@ -7,9 +7,11 @@
 </div> -->
 <app-navbar></app-navbar>
 <div class="container">
-<button (click)="calcTime()">Calc</button>
+<button (click)="splitArrays()">Calc</button>
   <div class="row" id="first_story_row">
-    <div class="col-sm-2"></div>
+    <div class="col-sm-2">
+        <!-- <button (click)="getStories()">Click</button> -->
+    </div>
     <div class="col-sm-8 first_story">
       <h2>{{this.stories_array[0].title}}</h2>
       <br><br>
@@ -17,11 +19,11 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-6">
+  <div class="row" id="stories_row">
+    <div class="col-lg-6 group1_stories">
 
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-6 group2_stories">
 
     </div>
 

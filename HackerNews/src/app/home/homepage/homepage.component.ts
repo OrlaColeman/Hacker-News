@@ -12,7 +12,8 @@ export class HomepageComponent implements OnInit {
   id_array: any;
 
   stories_array: Story[] = [];
-  comments_array: number[] = [];
+  even_story_array: Story[]=[];
+  odd_story_array: Story[]=[];
 
   tagline: string;
 
@@ -23,24 +24,22 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.now.getHours());
     this.getStoryIDs();
-   this.tagline = this.stories_array[0].score + " points by " + this.stories_array[0].by + " "
-  }
 
-  calcTime(){
-    let unixtimestamp = this.stories_array[9].time;
-    const dateNow = new Date(unixtimestamp*1000);
-    console.log(this.stories_array[9].title)
-    console.log( ((this.now.getHours()-1) - dateNow.getHours()) );
+    setTimeout(
+      function(){
+        this.getStories();
+      }.bind(this), 2000);
 
   }
 
   getStoryIDs(){
     return this.service.getTopStoryIDs().subscribe( data => {
       this.id_array = data;
-      this.getStories();
-    });
+      console.log(this.id_array)
+      console.log("done")
+        });
+        
   }
 
   getStories(){
@@ -48,13 +47,24 @@ export class HomepageComponent implements OnInit {
     this.id_array.forEach(id => {
       this.service.getIndividualStory(id).subscribe( data => {
         this.stories_array.push(data);
-        this.stories_array.forEach( a => {
-          let unixtimestamp = a.time;
-          const dateNow = new Date(unixtimestamp*1000);
-          a.time = ((this.now.getHours()-1) - dateNow.getHours());
-        })
-       });
+        });
     });
+  }
+
+  calcTime(){
+    //calc time from time given through API call 
+    this.stories_array.forEach( element => {
+      let unixtimestamp = element.time;
+      let dateNow = new Date(unixtimestamp*1000);
+      console.log(((this.now.getHours()) - dateNow.getHours()));
+    })
+
+  }
+
+  splitArrays(){
+    for( let i=1; i<this.stories_array.length; i++){
+      console.log(i);
+    }
   }
 
 }
