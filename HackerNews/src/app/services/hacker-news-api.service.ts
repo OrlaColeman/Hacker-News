@@ -8,17 +8,14 @@ import { Story } from '../models/hacker-news-model';
 })
 export class HackerNewsApiService {
 
-  id: number;
-
   constructor(private http: HttpClient) { }
 
   top_stories_url = 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty';
-  individual_story_url = `https://hacker-news.firebaseio.com/v0/item/${this.id}.json?print=pretty`
 
-  getTopStories(){
+  getTopStoryIDs(){
     return this.http.get(this.top_stories_url);
   }
-  getIndividualStory(){
-    return this.http.get<Story>(this.individual_story_url);
+  getIndividualStory(id: number){
+    return this.http.get<Story>(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`);
   }
 }
