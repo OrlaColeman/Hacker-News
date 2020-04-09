@@ -12,6 +12,7 @@ export class HomepageComponent implements OnInit {
   id_array: any;
 
   stories_array: Story[] = [];
+  comments_array: number[] = [];
 
   constructor(private service: HackerNewsApiService) { }
 
@@ -30,7 +31,7 @@ export class HomepageComponent implements OnInit {
     this.id_array.forEach(id => {
       this.service.getIndividualStory(id).subscribe( data => {
         this.stories_array.push(data);
-      });
+       });
     });
   }
 

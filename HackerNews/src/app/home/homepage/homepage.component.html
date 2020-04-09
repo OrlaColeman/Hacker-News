@@ -1,3 +1,7 @@
 I am the homepage 
 
 <button (click)="getStoryIDs()">CLick ME</button>
+
+<div *ngFor="let stories of stories_array">
+  {{stories.descendants}}
+</div>
