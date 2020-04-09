@@ -7,31 +7,23 @@
 </div> -->
 <app-navbar></app-navbar>
 <div class="container">
-  <div class="row">
+<button (click)="calcTime()">Calc</button>
+  <div class="row" id="first_story_row">
     <div class="col-sm-2"></div>
-    <div class="col-sm-8" style="background-color: red;height: 50vh;">
+    <div class="col-sm-8 first_story">
+      <h2>{{this.stories_array[0].title}}</h2>
+      <br><br>
+      <p>{{this.stories_array[0].time}}</p>
     </div>
   </div>
+
   <div class="row">
     <div class="col-lg-6">
-      <div class="row">
-        <div class="col-sm-6" style="background-color: aqua; height: 20vh;">
 
-        </div>
-        <div class="col-sm-6" style="background-color: green; height: 20vh;">
-
-        </div>
-      </div>
     </div>
     <div class="col-lg-6">
-      <div class="row">
-        <div class="col-sm-6" style="background-color: aqua; height: 20vh;">
 
-        </div>
-        <div class="col-sm-6" style="background-color: green; height: 20vh;">
-
-        </div>
-      </div>
     </div>
+
   </div>
 </div>

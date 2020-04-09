@@ -14,9 +14,26 @@ export class HomepageComponent implements OnInit {
   stories_array: Story[] = [];
   comments_array: number[] = [];
 
-  constructor(private service: HackerNewsApiService) { }
+  tagline: string;
+
+  now: Date = new Date();
+
+  constructor(private service: HackerNewsApiService) { 
+    this.now = new Date();
+  }
 
   ngOnInit() {
+    console.log(this.now.getHours());
+    this.getStoryIDs();
+   this.tagline = this.stories_array[0].score + " points by " + this.stories_array[0].by + " "
+  }
+
+  calcTime(){
+    let unixtimestamp = this.stories_array[9].time;
+    const dateNow = new Date(unixtimestamp*1000);
+    console.log(this.stories_array[9].title)
+    console.log( ((this.now.getHours()-1) - dateNow.getHours()) );
+
   }
 
   getStoryIDs(){
@@ -31,6 +48,11 @@ export class HomepageComponent implements OnInit {
     this.id_array.forEach(id => {
       this.service.getIndividualStory(id).subscribe( data => {
         this.stories_array.push(data);
+        this.stories_array.forEach( a => {
+          let unixtimestamp = a.time;
+          const dateNow = new Date(unixtimestamp*1000);
+          a.time = ((this.now.getHours()-1) - dateNow.getHours());
+        })
        });
     });
   }

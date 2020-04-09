@@ -1,0 +1,11 @@
+#first_story_row{
+    padding-top: 10%;
+}
+
+.first_story{
+    height: 40vh;
+    background-color: red;
+}
+.first_story h2{
+    text-align: center;
+}
