@@ -13,13 +13,15 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  getTopStories(){
+  //used to communicate with homepage component
+  getTopStories() {
     this.sharedService.sendTopStoryEvent();
   }
 
-  getNewStories(){
-this.sharedService.sendNewStoryEvent();
+  //used to communicate with homepage component
+  getNewStories() {
+    this.sharedService.sendNewStoryEvent();
   }
-  
+
 
 }

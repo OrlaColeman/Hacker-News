@@ -1,10 +1,10 @@
 .row{
     height: 100vh;
-
     background-image: url("/assets/img/world_shot.jpg");
     background-size: cover;
     background-position-y: -150px;
     background-position-x: -10px;
+    overflow: hidden;
 }
 .title{
     position: absolute;
@@ -18,5 +18,4 @@ h2{
 h1{
     font-size: 600%;
     font-family: 'Playfair Display', serif;
-
 }
