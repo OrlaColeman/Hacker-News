@@ -1,7 +1,68 @@
-I am the homepage 
+<div id=landing [@fadeLandingIn]="currentLandingState">
+  <app-landing></app-landing>
+</div>
 
-<button (click)="getStoryIDs()">CLick ME</button>
 
-<div *ngFor="let stories of stories_array">
-  {{stories.descendants}}
+<div id="home">
+
+  <div [@fadeIn]='currentState'>
+    <app-navbar></app-navbar>
+  </div>
+
+  <div class="container">
+    <div [@fadeIn]='currentState'>
+
+      <div class="row" id="first_story_row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-8 first_story">
+          <a [href]=even_story_array[0].url>
+            <h2>{{this.even_story_array[0].title}}</h2>
+          </a>
+          <br><br>
+          <iframe (load)="myLoadEvent($event)" class="first_story_iframe" frameBorder="0"
+            [src]="main_story_url"></iframe>
+          <p>{{this.tagline}} | <a href="#"> hide </a> | <a href="#"> {{this.even_story_array[0].descendants}}
+              comments</a>
+          </p>
+        </div>
+      </div>
+
+
+      <div class="row" id="stories_row">
+        <div class="col-lg-6 group1_stories">
+          <div class="group1_loop" *ngFor="let story of even_story_array; let i = index">
+            <a [href]=story.url>
+              <p class="heading">{{story.title}}</p>
+            </a>
+            <p class="text">{{story.score}} points by {{story.by}} | <a href="#"> hide </a> | <a href="#">
+                {{story.descendants}}
+                comments</a></p>
+            <hr>
+          </div>
+        </div>
+        <div class="col-lg-6 group2_stories">
+          <div class="group2_loop" *ngFor="let story of odd_story_array; let i = index">
+            <a [href]=story.url>
+              <p class="heading">{{story.title}}</p>
+            </a>
+            <p class="text">{{story.score}} points by {{story.by}} | <a href="#"> hide </a> | <a href="#">
+                {{story.descendants}}
+                comments</a></p>
+            <hr>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 nav_btns">
+          <button class="btn btn-light" (click)="prev()" [disabled]="prev_disabled == true">Prev</button>
+          &nbsp;&nbsp;
+          <button class="btn btn-light" (click)="next()" [disabled]="next_disabled == true">Next</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
