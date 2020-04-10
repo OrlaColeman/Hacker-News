@@ -38,7 +38,14 @@ iframe.even_story_iframe, iframe.odd_story_iframe{
     float: left;
     padding-right: 5%
 }
-
 .nav_btns{
     text-align: center;
+}
+a:visited, a:link, a:active
+{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    color: rgb(124, 124, 124);
 }
