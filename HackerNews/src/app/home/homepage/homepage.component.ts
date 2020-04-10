@@ -91,11 +91,11 @@ export class HomepageComponent implements OnInit {
 
     setTimeout(function () {
       this.changeState();
-    }.bind(this), 6000);
+    }.bind(this), 6500);
 
     setTimeout(function () {
       this.display_home();
-    }.bind(this), 5500);
+    }.bind(this), 6000);
 
   }
 
