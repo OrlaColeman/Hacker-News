@@ -7,25 +7,54 @@
 </div> -->
 <app-navbar></app-navbar>
 <div class="container">
-<button (click)="splitArrays()">Calc</button>
+  <!-- <button (click)="get50_100Stories()">Calc</button> -->
   <div class="row" id="first_story_row">
     <div class="col-sm-2">
-        <!-- <button (click)="getStories()">Click</button> -->
+      <!-- <button (click)="setEvenUrl()">Click</button> -->
     </div>
     <div class="col-sm-8 first_story">
-      <h2>{{this.stories_array[0].title}}</h2>
+      <h2>{{this.even_story_array[0].title}}</h2>
       <br><br>
-      <p>{{this.stories_array[0].time}}</p>
+      <iframe class="first_story_iframe" frameBorder="0" [src]="safeUrl"></iframe>
+      <p>{{this.tagline}} | <a href="#"> hide </a> | <a href="#"> {{this.even_story_array[0].descendants}} comments</a>
+      </p>
     </div>
   </div>
 
   <div class="row" id="stories_row">
+
     <div class="col-lg-6 group1_stories">
-
+      <div class="group1_loop" *ngFor="let story of even_story_array; let i = index">
+        <!-- <iframe class="even_story_iframe" frameBorder="0" [src]="evenUrl"></iframe> -->
+        <p class="heading">{{story.title}}</p>
+        <p>{{story.score}} points by {{story.by}} | <a href="#"> hide </a> | <a href="#"> {{story.descendants}}
+            comments</a></p>
+        <hr>
+      </div>
     </div>
+    <!-- this.taglines[j] = (this.even_story_array[j].score + " points by " + this.even_story_array[j].by + " " + (this.now.getHours() - dateNow.getHours()) + " hours ago"); -->
     <div class="col-lg-6 group2_stories">
-
+      <div class="group2_loop" *ngFor="let story of odd_story_array; let i = index">
+        <!-- <iframe class="odd_story_iframe" frameBorder="0" [src]="oddUrl"></iframe> -->
+        <p class="heading">{{story.title}}</p>
+        <p>{{story.score}} points by {{story.by}} | <a href="#"> hide </a> | <a href="#"> {{story.descendants}}
+            comments</a></p>
+        <hr>
+      </div>
     </div>
 
   </div>
+
+  <div class="row">
+<div class="col-sm-2"></div>
+<div class="col-sm-8 nav_btns">
+        <a role="button" (click)="getStories(50)">0 - 50</a>&nbsp;&nbsp;
+        <a role="button" (click)="getStories(100)">50 - 100</a>&nbsp;&nbsp;
+        <a role="button" (click)="getStories(150)">100 - 150</a>&nbsp;&nbsp;
+        <a role="button" (click)="getStories(200)">150 - 200</a>&nbsp;&nbsp;
+        <a role="button" (click)="getStories(250)">200 - 250</a>&nbsp;&nbsp;
 </div>
+    
+  </div>
+</div>
+
