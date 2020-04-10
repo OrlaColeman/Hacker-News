@@ -2,6 +2,8 @@ import { Component, OnInit, HostListener, Directive, Input, HostBinding } from '
 import { HackerNewsApiService } from 'src/app/services/hacker-news-api.service';
 import { Story } from 'src/app/models/hacker-news-model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
+import { SharedServiceService } from 'src/app/services/shared-service.service';
 
 @Component({
   selector: 'app-homepage',
@@ -32,31 +34,43 @@ export class HomepageComponent implements OnInit {
       this.windowScrolled = false;
     }
   }
+  clickEventsubscription: Subscription;
 
-  constructor(private service: HackerNewsApiService, public sanitizer: DomSanitizer) {
+  constructor(private service: HackerNewsApiService, private shared_service: SharedServiceService, public sanitizer: DomSanitizer) {
     this.now = new Date();
+
+    this.clickEventsubscription = this.shared_service.getTopStoryEvent().subscribe(() => {
+      this.getStoryIDs();
+    })
+
+    this.clickEventsubscription = this.shared_service.getNewStoryEvent().subscribe(() => {
+      this.getNewStoryIDs();
+    });
   }
 
   ngOnInit() {
     this.getStoryIDs();
-
-    setTimeout(
-      function () {
-        this.getStories(20);
-      }.bind(this), 5000);
-
   }
 
-
-  myLoadEvent(e) {
-    console.log(e);
-  }
 
   getStoryIDs() {
     return this.service.getTopStoryIDs().subscribe(data => {
       this.id_array = data;
-    });
+    }),
+      setTimeout(
+        function () {
+          this.getStories(20);
+        }.bind(this), 5000);
+  }
 
+  getNewStoryIDs() {
+    return this.service.getNewStoryIDs().subscribe(data => {
+      this.id_array = data;
+    }),
+      setTimeout(
+        function () {
+          this.getStories(20);
+        }.bind(this), 5000);
   }
 
   getStories(num: number) {
