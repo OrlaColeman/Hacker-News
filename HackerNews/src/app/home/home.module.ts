@@ -4,12 +4,15 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from '../navigation/navbar/navbar.component';
 import { NavigationModule } from '../navigation/navigation.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
-  declarations: [HomepageComponent],
+  declarations: [HomepageComponent, LandingComponent],
   imports: [
     CommonModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     NavigationModule  
   ],
   exports: [

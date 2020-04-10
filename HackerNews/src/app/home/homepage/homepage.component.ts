@@ -1,19 +1,45 @@
-import { Component, OnInit, HostListener, Directive, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, HostListener} from '@angular/core';
 import { HackerNewsApiService } from 'src/app/services/hacker-news-api.service';
 import { Story } from 'src/app/models/hacker-news-model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { SharedServiceService } from 'src/app/services/shared-service.service';
+import { trigger, style, state, transition, animate } from '@angular/animations';
+
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+  styleUrls: ['./homepage.component.css'],
+  animations: [
+    trigger('fadeIn', [
+      state('initial', style ({
+        opacity: 0
+      })),
+      state('final', style ({
+        opacity: 1
+      })),
+      transition('initial=>final', animate('3000ms'))
+    ]),
+    trigger('fadeLandingIn', [
+      state('initial', style ({
+        opacity: 0
+      })),
+      state('final', style ({
+        opacity: 1
+      })),
+      transition('initial=>final', animate('1000ms')),
+      transition('final=>initial', animate('1400ms'))
+    ])
+  ]
 })
 
 export class HomepageComponent implements OnInit {
 
-  safeUrl: SafeResourceUrl;
+  currentState = 'initial';
+  currentLandingState = 'initial'
+
+  main_story_url: SafeResourceUrl;
   id_array: any;
   even_story_array: Story[] = [];
   odd_story_array: Story[] = [];
@@ -49,10 +75,45 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    document.getElementById('home').style.display='none';
+
     this.getStoryIDs();
+
+    setTimeout(function (){
+      this.changeLandingState();
+      }.bind(this), 400);
+
+      setTimeout(function(){
+    this.changeLandingState2();
+    }.bind(this), 5000);
+
+    setTimeout(function (){
+      this.changeState();
+    }.bind(this), 6000);
+
+    setTimeout(function (){
+      this.display_home();
+    }.bind(this), 5500);
+
   }
 
 
+  changeState(){
+    this.currentState = this.currentState === 'initial' ? 'final' : 'initial';
+  }
+  changeLandingState(){
+    this.currentLandingState = this.currentLandingState === 'initial' ? 'final' : 'initial';
+  }
+  changeLandingState2(){
+    this.currentLandingState = this.currentLandingState === 'final' ? 'initial' : 'final';
+  }
+  
+  display_home(){
+    document.getElementById('home').style.display='block';
+    document.getElementById('landing').style.display='none';
+  }
+  
   getStoryIDs() {
     return this.service.getTopStoryIDs().subscribe(data => {
       this.id_array = data;
@@ -80,7 +141,7 @@ export class HomepageComponent implements OnInit {
     this.service.getIndividualStory(this.id_array[0]).subscribe(data => {
       this.even_story_array.push(data);
       this.tagline = (this.even_story_array[0].score + " points by " + this.even_story_array[0].by);
-      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.even_story_array[0].url);
+      this.main_story_url = this.sanitizer.bypassSecurityTrustResourceUrl(this.even_story_array[0].url);
     });
 
     for (let i = (num - 19); i < num; i += 2) {

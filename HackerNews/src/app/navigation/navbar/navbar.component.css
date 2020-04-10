@@ -1,3 +1,11 @@
+nav{
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    z-index: 10;
+    width: 100vw;
+}
+
 a:hover{
     cursor: pointer!important;
 }

@@ -1,5 +1,5 @@
 #first_story_row{
-    padding-top: 5%;
+    padding-top: 10%;
     padding-bottom: 5%;
 }
 
@@ -38,7 +38,12 @@ iframe.even_story_iframe, iframe.odd_story_iframe{
     float: left;
     padding-right: 5%
 }
+#stories_row{
+    height: 60vh;
+    overflow-x: scroll;
+}
 .nav_btns{
+    padding-top: 2%;
     text-align: center;
 }
 a:visited, a:link, a:active
