@@ -1,0 +1,62 @@
+#first_story_row{
+    padding-top: 10%;
+    padding-bottom: 5%;
+}
+
+.first_story{
+    height: 100%;
+}
+.first_story h2{
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+}
+
+.group1_stories p.heading, .group2_stories p.heading{
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: 17px;
+}
+
+.first_story p, .group1_stories p.text, .group2_stories p.text{
+    font-style: italic;
+    text-align: center;
+    font-size: 13px;
+    font-family: 'Lato', sans-serif;
+}
+iframe.first_story_iframe{
+    width: 100%;
+    height: 40vh;
+    overflow:hidden;
+}
+
+.group1_stories, .group2_stories{
+    padding-bottom: 5%;
+}
+.group1_loop, .group2_loop{
+    padding-bottom: 3%;
+}
+
+iframe.even_story_iframe, iframe.odd_story_iframe{
+    width: auto;
+    height: 10vh;
+    float: left;
+    padding-right: 5%
+}
+#stories_row{
+    height: 60vh;
+    overflow-x: scroll;
+}
+.nav_btns{
+    padding-top: 2%;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+}
+a:visited, a:link, a:active
+{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    color: rgb(124, 124, 124);
+}
