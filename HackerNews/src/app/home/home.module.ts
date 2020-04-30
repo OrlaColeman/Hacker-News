@@ -6,9 +6,10 @@ import { NavbarComponent } from '../navigation/navbar/navbar.component';
 import { NavigationModule } from '../navigation/navigation.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingComponent } from './landing/landing.component';
+import { TesterComponent } from './tester/tester.component';
 
 @NgModule({
-  declarations: [HomepageComponent, LandingComponent],
+  declarations: [HomepageComponent, LandingComponent, TesterComponent],
   imports: [
     CommonModule,
     HttpClientModule,
